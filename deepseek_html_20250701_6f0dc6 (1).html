@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vineeth Kumar's Portfolio - Design Engineer specializing in CAD & CAE">
+  <title>Vineeth Kumar | Design Engineer Portfolio</title>
+  <link rel="icon" href="https://i.imgur.com/xVMy5Nc.jpeg" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+    }
+    
+    // Check for saved theme preference
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark');
+    }
+
+    // Simple projects filter
+    function filterProjects(category) {
+      const projects = document.querySelectorAll('.project-card');
+      projects.forEach(project => {
+        if (category === 'all' || project.dataset.category === category) {
+          project.classList.remove('hidden');
+        } else {
+          project.classList.add('hidden');
+        }
+      });
+      
+      // Update active filter button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('bg-blue-500', btn.dataset.filter === category);
+        btn.classList.toggle('text-white', btn.dataset.filter === category);
+        btn.classList.toggle('bg-gray-200', btn.dataset.filter !== category);
+        btn.classList.toggle('dark:bg-gray-700', btn.dataset.filter !== category);
+      });
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    section {
+      scroll-margin-top: 80px;
+    }
+    .skill-category {
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid rgb(59, 130, 246);
+    }
+    .dark .skill-category {
+      background: rgba(59, 130, 246, 0.2);
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .dark .project-card:hover {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-sm z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Vineeth Kumar</h1>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#about" class="hover:text-blue-500 transition-colors">About</a>
+        <a href="#education" class="hover:text-blue-500 transition-colors">Education</a>
+        <a href="#projects" class="hover:text-blue-500 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-blue-500 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-blue-500 transition-colors">Contact</a>
+        <button onclick="toggleTheme()" class="ml-2 px-3 py-1 border rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="Toggle dark mode">
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:inline"></i>
+        </button>
+      </nav>
+      <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 px-4 pb-4">
+      <div class="flex flex-col space-y-3">
+        <a href="#about" class="hover:text-blue-500 transition-colors">About</a>
+        <a href="#education" class="hover:text-blue-500 transition-colors">Education</a>
+        <a href="#projects" class="hover:text-blue-500 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-blue-500 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-blue-500 transition-colors">Contact</a>
+        <button onclick="toggleTheme()" class="text-left hover:text-blue-500 transition-colors">
+          Toggle Theme
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-20 md:py-28" id="home">
+    <div class="container mx-auto px-4">
+      <div class="relative w-32 h-32 mx-auto mb-6">
+        <img src="https://i.imgur.com/xVMy5Nc.jpeg" alt="Vineeth Kumar portrait" 
+             class="w-full h-full rounded-full shadow-lg object-cover border-4 border-white dark:border-gray-700" loading="lazy">
+        <div class="absolute -bottom-2 -right-2 bg-blue-500 text-white p-2 rounded-full">
+          <i class="fas fa-cogs text-lg"></i>
+        </div>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Vineeth Kumar <span class="wave">👋</span></h2>
+      <p class="text-xl md:text-2xl text-blue-500 dark:text-blue-400 font-medium mb-6">Design Engineer | CAD & CAE Specialist</p>
+      <div class="flex justify-center space-x-4">
+        <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full transition-colors">
+          Contact Me
+        </a>
+        <a href="#projects" class="border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800 px-6 py-2 rounded-full transition-colors">
+          View Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="container mx-auto py-12 px-4" id="about">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
+      <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm">
+        <p class="mb-4">
+          I am a dedicated Mechanical Engineering Master's student at <span class="font-semibold text-blue-500">IIT Tirupati</span> with a specialization in Design and Manufacturing. My passion lies in engineering design, simulation, and innovation-driven development.
+        </p>
+        <p class="mb-4">
+          Currently, I am engaged in the development of an <span class="font-semibold">indigenous piezoelectric accelerometer sensor</span>, tailored for applications in machine dynamics. I bring concepts to life using a versatile toolkit that includes <span class="font-semibold">CREO, ANSYS, MATLAB, Simulink, and Arduino</span>.
+        </p>
+        <p>
+          My approach blends technical depth with creative problem-solving to achieve practical and high-performance engineering solutions. I'm particularly interested in the intersection of mechanical design and smart sensor technology.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="container mx-auto py-12 px-4" id="education">
+    <h2 class="text-3xl font-bold mb-8 text-center">Education</h2>
+    <div class="max-w-4xl mx-auto space-y-8">
+
+      <!-- M.Tech -->
+      <div class="education-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+        <div class="p-6 md:p-8">
+          <div class="flex items-start">
+            <div class="mr-6">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Indian_Institute_of_Technology_Tirupati_Logo.png/220px-Indian_Institute_of_Technology_Tirupati_Logo.png" 
+                   alt="IIT Tirupati Logo" 
+                   class="w-16 h-16 object-contain rounded-lg border border-gray-200 dark:border-gray-600" loading="lazy">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-1">Master of Technology in Design and Manufacturing</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-2">Indian Institute of Technology Tirupati | 2024 – 2026</p>
+              <p class="font-medium mb-3">CGPA: 8.23</p>
+              <div class="bg-blue-50 dark:bg-gray-700 rounded-lg p-3">
+                <p class="font-medium text-sm mb-1">Key Courses:</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Advanced FEM</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">CAD</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Machine Dynamics</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">DFM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B.Tech -->
+      <div class="education-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+        <div class="p-6 md:p-8">
+          <div class="flex items-start">
+            <div class="mr-6">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/JNTUH_Logo.png/220px-JNTUH_Logo.png" 
+                   alt="JNTUH Logo" 
+                   class="w-16 h-16 object-contain rounded-lg border border-gray-200 dark:border-gray-600" loading="lazy">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-1">Bachelor of Technology in Mechanical Engineering</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-2">JNTUH University College of Engineering Sultanpur | 2021 – 2024</p>
+              <p class="font-medium mb-2">CGPA: 7.48 | Top 1% of the class</p>
+              <div class="bg-blue-50 dark:bg-gray-700 rounded-lg p-3">
+                <p class="font-medium text-sm mb-1">Key Courses:</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Heat Transfer</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Solid Mechanics</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Thermodynamics</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Machine Design</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diploma -->
+      <div class="education-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+        <div class="p-6 md:p-8">
+          <div class="flex items-start">
+            <div class="mr-6">
+              <img src="https://jngpoly.org/wp-content/uploads/2021/06/JNGP-LOGO.png" 
+                   alt="Jawaharlal Nehru Government Polytechnic Logo" 
+                   class="w-16 h-16 object-contain rounded-lg border border-gray-200 dark:border-gray-600" loading="lazy">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-1">Diploma in Mechanical Engineering</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-2">Jawaharlal Nehru Government Polytechnic | 2018 – 2021</p>
+              <p class="font-medium mb-2">CGPA: 9.71 | Top 3% of the class</p>
+              <div class="bg-blue-50 dark:bg-gray-700 rounded-lg p-3">
+                <p class="font-medium text-sm mb-1">Key Courses:</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Engineering Drawing</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Fluid Mechanics</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Material Science</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Workshop Tech</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Matriculation -->
+      <div class="education-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+        <div class="p-6 md:p-8">
+          <div class="flex items-start">
+            <div class="mr-6">
+              <img src="https://vidyaranyamodelschool.edu.in/wp-content/uploads/2021/05/cropped-vms-logo-1-192x192.png" 
+                   alt="Vidyaranya Model School Logo" 
+                   class="w-16 h-16 object-contain rounded-lg border border-gray-200 dark:border-gray-600" loading="lazy">
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold mb-1">Matriculation</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-2">Vidyaranya Model School | 2018</p>
+              <p class="font-medium mb-2">CGPA: 9.7 | 1st rank in class</p>
+              <div class="bg-blue-50 dark:bg-gray-700 rounded-lg p-3">
+                <p class="font-medium text-sm mb-1">Key Courses:</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Mathematics</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">Physics</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">General Science</span>
+                  <span class="bg-white dark:bg-gray-600 px-3 py-1 rounded-full text-xs font-medium">English</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section class="container mx-auto py-12 px-4" id="projects">
+    <h2 class="text-3xl font-bold mb-8 text-center">Projects</h2>
+    <div class="max-w-4xl mx-auto space-y-8">
+
+      <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+        <div class="p-6 md:p-8">
+          <h3 class="text-2xl font-bold mb-2">Design and Fabrication of Indigenous Piezoelectric Accelerometer Sensor</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Duration: 12 months | Supervisor: Dr. Govind N Sahu</p>
+          <p class="mb-4">
+            Currently working on the design of a piezoelectric accelerometer for vibration measurement in dynamic systems. Focused on material selection, sensitivity optimization, and frequency response analysis through simulation models. Intended for application in machine dynamics with an emphasis on low-cost, high-sensitivity sensor design.
+          </p>
+          <p class="text-sm text-blue-500 font-medium">Tools Used: COMSOL Multiphysics, MATLAB, Ansys Workbench, Arduino IDE</p>
+        </div>
+      </div>
+
+      <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+        <div class="p-6 md:p-8">
+          <h3 class="text-2xl font-bold mb-2">Design and Optimization of Disc Brake Rotor</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Duration: 6 months</p>
+          <p class="mb-4">
+            Developed novel vented and slotted rotor profiles and compared them against conventional designs to assess performance under braking conditions. Conducted structural and thermal simulations using finite element analysis to evaluate stress, temperature distribution, and deformation. Results showed that the new profiles offered improved heat dissipation and reduced thermal distortion, leading to enhanced braking efficiency and durability.
+          </p>
+          <p class="text-sm text-blue-500 font-medium">Tools Used: PTC Creo, ANSYS</p>
+        </div>
+      </div>
+
+      <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+        <div class="p-6 md:p-8">
+          <h3 class="text-2xl font-bold mb-2">Design and Optimization of Mechanical Rover</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Duration: 2 months</p>
+          <p class="mb-4">
+            Designed a multi-terrain mechanical rover and performed structural and stability optimization for enhanced durability and performance. Modeled 3D geometry in Creo and carried out static and dynamic analysis in ANSYS.
+          </p>
+          <p class="text-sm text-blue-500 font-medium">Tools Used: PTC Creo, ANSYS</p>
+        </div>
+      </div>
+
+      <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+        <div class="p-6 md:p-8">
+          <h3 class="text-2xl font-bold mb-2">Design and Fabrication of Solar Powered Hacksaw</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Duration: 6 months</p>
+          <p class="mb-4">
+            Developed a solar-powered hacksaw using a DC motor and crank-slider mechanism for light-duty metal cutting. Modeled components in SolidWorks and integrated solar panels with battery storage for sustainable operation.
+          </p>
+          <p class="text-sm text-blue-500 font-medium">Tools Used: SolidWorks</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  
+  <!-- Skills Section -->
+  <section class="container mx-auto py-12 px-4" id="skills">
+    <h2 class="text-3xl font-bold mb-8 text-center">Skills</h2>
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+
+      <!-- Design & CAD Tools -->
+      <div class="skill-category p-4 rounded-lg">
+        <h3 class="text-xl font-bold mb-3">Design & CAD Tools</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>PTC Creo:</strong> 3D part modeling, Assembly design, Surface modeling, Drafting</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>AutoCAD:</strong> 2D drafting, Layout preparation, Engineering drawings</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Simulation & Analysis -->
+      <div class="skill-category p-4 rounded-lg">
+        <h3 class="text-xl font-bold mb-3">Simulation & Analysis</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>ANSYS (Mechanical / Workbench):</strong> Static structural, Modal, Thermal, Harmonic, Transient, Explicit dynamics, Fatigue analysis</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>Abaqus:</strong> FEA simulation, Material modeling, Static analysis, Meshing, Post-processing</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>COMSOL Multiphysics:</strong> Multiphysics simulation, MEMS, Piezoelectric modeling, Coupled field analysis</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Programming & Tools -->
+      <div class="skill-category p-4 rounded-lg">
+        <h3 class="text-xl font-bold mb-3">Programming & Tools</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>MATLAB:</strong> Numerical computation, Scripting</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>Simulink:</strong> System modeling, Control design, Block simulation</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>Python (for ML):</strong> Data preprocessing, Supervised & Unsupervised learning, Model evaluation, Matplotlib, NumPy, Pandas, Scikit-learn</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Engineering Methods -->
+      <div class="skill-category p-4 rounded-lg">
+        <h3 class="text-xl font-bold mb-3">Engineering Methods</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span>Design for Manufacturing and Assembly (DFMA)</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span>Vibration Analysis</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span>Sensor Integration</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span><strong>MS Office Suite:</strong> Documentation, Engineering report prep, Presentations</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Workshop Engineering -->
+      <div class="skill-category p-4 rounded-lg">
+        <h3 class="text-xl font-bold mb-3">Workshop Engineering</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span>Carpentry</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span>Foundry</span>
+          </li>
+          <li class="flex items-start">
+            <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+            <span>Welding</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="container mx-auto py-12 px-4" id="contact">
+    <h2 class="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
+    <div class="max-w-4xl mx-auto bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-sm">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-4">
+                <i class="fas fa-envelope text-blue-500"></i>
+              </div>
+              <div>
+                <p class="font-medium">Email</p>
+                <a href="mailto:vineethkdasaroju@gmail.com" class="text-blue-500 hover:underline">vineethkdasaroju@gmail.com</a>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-4">
+                <i class="fas fa-phone text-blue-500"></i>
+              </div>
+              <div>
+                <p class="font-medium">Phone</p>
+                <a href="tel:+91807422087" class="text-blue-500 hover:underline">+91 807422087</a>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-4">
+                <i class="fab fa-linkedin-in text-blue-500"></i>
+              </div>
+              <div>
+                <p class="font-medium">LinkedIn</p>
+                <a href="https://linkedin.com/in/vineethkumar-dasaroju" target="_blank" class="text-blue-500 hover:underline">Vineeth Kumar Dasaroju</a>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-4">
+                <i class="fab fa-instagram text-blue-500"></i>
+              </div>
+              <div>
+                <p class="font-medium">Instagram</p>
+                <a href="https://instagram.com/vineethk_dasaroju" target="_blank" class="text-blue-500 hover:underline">@vineethk_dasaroju</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Send Me a Message</h3>
+          <form action="https://formspree.io/f/myyqgvqz" method="POST" class="space-y-4">
+            <div>
+              <label for="name" class="block mb-1 font-medium">Name</label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+            </div>
+            <div>
+              <label for="email" class="block mb-1 font-medium">Email</label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600">
+            </div>
+            <div>
+              <label for="message" class="block mb-1 font-medium">Message</label>
+              <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"></textarea>
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors w-full">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-100 dark:bg-gray-800 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center space-x-6 mb-6">
+        <a href="mailto:vineethkdasaroju@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors" aria-label="Email">
+          <i class="fas fa-envelope text-xl"></i>
+        </a>
+        <a href="tel:+91807422087" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors" aria-label="Phone">
+          <i class="fas fa-phone text-xl"></i>
+        </a>
+        <a href="https://linkedin.com/in/vineethkumar-dasaroju" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in text-xl"></i>
+        </a>
+        <a href="https://instagram.com/vineethk_dasaroju" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors" aria-label="Instagram">
+          <i class="fab fa-instagram text-xl"></i>
+        </a>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300">© 2025 Vineeth Kumar Dasaroju. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
